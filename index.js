@@ -23,7 +23,7 @@ client.on('ready', () => {
     console.log(`in ${client.guilds.size} servers `)
     console.log(`[Codes] ${client.users.size}`)
 });
-const prefix = "!!"
+const prefix = "A"
 client.on('message', async msg => {
     if (msg.author.bot) return undefined;
     if (!msg.content.startsWith(prefix)) return undefined;
@@ -119,6 +119,9 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join('\n')}`)
         const embedNP = new Discord.RichEmbed()
     .setDescription(`:notes: الان يتم تشغيل : **${serverQueue.songs[0].title}**`)
         return msg.channel.sendEmbed(embedNP);
+    }  else if (mess.startsWith(prefix + 'join')) {
+        if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **يجب ان تكون في روم صوتي**');
+message.member.voiceChannel.join().then(message.channel.send(':ok:'));
     } else if (command === `replay`) {
         if (!serverQueue) return msg.channel.send('لا يوجد شيء حالي ف العمل.');
         const embedNP = new Discord.RichEmbed()
